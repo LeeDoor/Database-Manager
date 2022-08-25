@@ -10,14 +10,19 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width = "*"/>
             <ColumnDefinition Width = "*"/>
-            <ColumnDefinition Width = "0.5 *"/>
         </Grid.ColumnDefinitions>
 
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="70"/>
+        </Grid.RowDefinitions>
+
         <ListView 
-            Grid.Column="0" 
+            Grid.Column="0"
+            Grid.Row="0"
             Margin="5,0,0,5" 
             ItemsSource="{Binding Users}" SelectedItem="{Binding SelectedUser}">
-            
+
             <ListView.View>
                 <GridView>
                     <GridViewColumn DisplayMemberBinding="{Binding Path=Id}" Width="30">Id</GridViewColumn>
@@ -26,9 +31,9 @@
                 </GridView>
             </ListView.View>
         </ListView>
-
         <ListView 
             Grid.Column="1" 
+            Grid.Row = "0"
             Margin="5,0,0,5" 
             ItemsSource="{Binding Orders}" SelectedItem="{Binding SelectedOrder}">
 
@@ -42,5 +47,15 @@
             </ListView.View>
         </ListView>
 
+        <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" FlowDirection="LeftToRight" Grid.Row="1" Grid.Column="0">
+            <Button Command="{Binding AddPersonClick}" Width="70" VerticalAlignment="Center" Content="add" Padding="10" Margin="5"/>
+            <Button Command="{Binding DeletePersonClick}" Width="70" VerticalAlignment="Center" Content="remove" Padding="10" Margin="5"/>
+            <Button Command="{Binding EditPersonClick}" Width="70" VerticalAlignment="Center" Content="edit" Padding="10" Margin="5"/>
+        </StackPanel>
+
+        <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" FlowDirection="LeftToRight" Grid.Row="1" Grid.Column="1">
+            <Button Command="{Binding AddOrderClick}" Width="70" VerticalAlignment="Center" Content="add" Padding="10" Margin="5"/>
+            <Button Command="{Binding DeleteOrderClick}" Width="70" VerticalAlignment="Center" Content="remove" Padding="10" Margin="5"/>
+        </StackPanel>
     </Grid>
 </Window> 

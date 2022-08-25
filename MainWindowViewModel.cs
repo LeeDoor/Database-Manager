@@ -46,24 +46,24 @@ namespace Database_Manager
         public DelegateCommand AddOrderClick { get; set; }
         public DelegateCommand DeleteOrderClick { get; set; }
 
-        public async void AddPerson()
+        public void AddPerson()
         {
 
         }
-        public async void EditPerson()
+        public void EditPerson()
         {
 
         }
-        public async void DeletePerson()
+        public void DeletePerson()
         {
 
         }
 
-        public async void AddOrder()
+        public void AddOrder()
         {
 
         }
-        public async void DeleteOrder()
+        public void DeleteOrder()
         {
 
         }

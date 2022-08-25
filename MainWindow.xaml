@@ -1,0 +1,31 @@
+﻿<Window x:Class="Database_Manager.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Database_Manager"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="500" Width="800" AllowsTransparency="True">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width = "*"/>
+            <ColumnDefinition Width = "*"/>
+            <ColumnDefinition Width = "0.5 *"/>
+        </Grid.ColumnDefinitions>
+
+        <ListView 
+            Grid.Column="0" 
+            Margin="5,0,0,5" 
+            ItemsSource="{Binding Users}" SelectedItem="{Binding SelectedUser}">
+            
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Id}" Width="30">Id</GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Name}" Width="130">Name</GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Phone}" Width="140">Phone number</GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
+         
+    </Grid>
+</Window> 

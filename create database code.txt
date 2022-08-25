@@ -1,0 +1,27 @@
+--CREATE DATABASE Shop
+
+--CREATE TABLE Users (
+--	Id int PRIMARY KEY IDENTITY,
+--	[Name] varchar(25),
+--	phone int
+--);
+
+--INSERT INTO Users VALUES 
+-- ('Leonid Samoshenko', 222444555),
+-- ('Nikolay Ivanov',	   444777533),
+-- ('Anna Nikolaevna',   538967348),
+-- ('Boris Sviridov',	   864798467);
+
+--CREATE TABLE Orders (
+--    Id int PRIMARY KEY IDENTITY,
+--    CustomerId int FOREIGN KEY REFERENCES Users(Id),
+--    Summ money,
+--    [Date] date
+--);
+
+--INSERT INTO Orders VALUES
+--(1, 1200, '2000-12-12')
+--(1, 4500, '2000-12-31'),
+--(2, 3300, '2001-4-12'),
+--(4, 2440, '2002-1-13')
+

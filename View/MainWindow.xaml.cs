@@ -12,8 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-
-namespace Database_Manager
+using Database_Manager.ViewModel;
+namespace Database_Manager.View
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml

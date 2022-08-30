@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Database_Manager
+namespace Database_Manager.Model
 {
     public class User : INotifyPropertyChanged
     {

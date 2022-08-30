@@ -12,7 +12,7 @@ namespace Database_Manager.Model
         private int id;
         private int customerId;
         private decimal summ;
-        private string date;
+        private DateTime date;
 
         public int Id
         {
@@ -41,7 +41,7 @@ namespace Database_Manager.Model
                 OnPropertyChanged(nameof(Summ));
             }
         }
-        public string Date
+        public DateTime Date
         {
             get => date;
             set

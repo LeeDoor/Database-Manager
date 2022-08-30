@@ -54,11 +54,6 @@ namespace Database_Manager.ViewModel
         public DelegateCommand AddOrderClick { get; set; }
         public DelegateCommand DeleteOrderClick { get; set; }
 
-        public void AddPerson()
-        {
-            DatabaseManager.AddUser("ignat", 2224444);
-            UpdateUsers();
-        }
         public void EditPerson()
         {
 
@@ -80,38 +75,6 @@ namespace Database_Manager.ViewModel
         public bool IsPersonSelected() => SelectedUser != null;
         public bool IsOrderSelected() => SelectedOrder != null;
 
-        private void UpdateUsers()
-        {
-            Users = new ObservableCollection<User>();
-            SqlCommand command = new SqlCommand("SELECT * FROM Users", connection);
-            SqlDataReader reader = command.ExecuteReader();
-            while (reader.Read())
-            {
-                object id = reader.GetValue(0);
-                object name = reader.GetValue(1);
-                object phone = reader.GetValue(2);
-
-                Users.Add(new User() { Id = (int)id, Name = name.ToString(), Phone = (int)phone });
-            }
-            reader.Close();
-        }
-        private void UpdateOrders()
-        {
-            Orders = new ObservableCollection<Order>();
-            SqlCommand command = new SqlCommand("SELECT * FROM Orders", connection);
-            SqlDataReader reader = command.ExecuteReader();
-
-            while (reader.Read())
-            {
-                object id = reader.GetValue(0);
-                object customerId = reader.GetValue(1);
-                object summ = reader.GetValue(2);
-                object date = reader.GetValue(3);
-
-                Orders.Add(new Order() { Id = (int)id, CustomerId = (int)customerId, Summ = (decimal)summ, Date = date.ToString() });
-            }
-            reader.Close();
-        }
 
         private void DeleteAllData()
         {
@@ -120,30 +83,6 @@ namespace Database_Manager.ViewModel
 
             command = new SqlCommand($"DELETE FROM Users", connection);
             command.ExecuteNonQuery();
-        }
-
-        private void FillDefaultValuesUsers()
-        {
-            string[] names = { "oleg nikolaevich", "sereja sergeevich", "kolya" };
-            Random random = new Random();
-            foreach (var name in names)
-            {
-                SqlCommand command = new SqlCommand($"INSERT INTO Users VALUES ('{name}', {random.Next(10000000, 99999999)});", connection);
-                int val = command.ExecuteNonQuery();
-            }
-        }
-        private void FillDefaultValuesOrders()
-        {
-            SqlCommand command = new SqlCommand($"DELETE FROM Orders", connection);
-            command.ExecuteNonQuery();
-
-            string[] dates = { "2000-12-12", "2000-12-31", "2001-4-12" };
-            Random random = new Random();
-            foreach (var date in dates)
-            {
-                command = new SqlCommand($"INSERT INTO Orders VALUES ({Users[random.Next(0, Users.Count - 1)].Id}, {random.Next(100, 200000)}, '{date}');", connection);
-                int val = command.ExecuteNonQuery();
-            }
         }
 
         public MainWindowViewModel()
@@ -160,19 +99,17 @@ namespace Database_Manager.ViewModel
 
             DeleteAllData();
 
-            FillDefaultValuesUsers();
+            DatabaseManager.FillDefaultValues();
             Users = DatabaseManager.GetUsers();
-            //UpdateUsers();
-            FillDefaultValuesOrders();
-            UpdateOrders();
+            Orders = DatabaseManager.GetOrders();
 
             //сдесь observes can execute не работает по непонятной причине, и кнопка не становится видимой когда появляется выбранный элемент
-            AddPersonClick = new DelegateCommand(AddPerson);//.ObservesCanExecute(() => true);
-            EditPersonClick = new DelegateCommand(EditPerson);
-            DeletePersonClick = new DelegateCommand(DeletePerson);//, IsPersonSelected);//.ObservesCanExecute(IsPersonSelected);
-
-            AddOrderClick = new DelegateCommand(AddOrder);//, () => true);//.ObservesCanExecute(() => true);
-            DeleteOrderClick = new DelegateCommand(DeleteOrder);//, IsOrderSelected);//.ObservesCanExecute(IsOrderSelected);
+            //AddPersonClick = new DelegateCommand(AddPerson);//.ObservesCanExecute(() => true);
+            //EditPersonClick = new DelegateCommand(EditPerson);
+            //DeletePersonClick = new DelegateCommand(DeletePerson);//, IsPersonSelected);//.ObservesCanExecute(IsPersonSelected);
+            //
+            //AddOrderClick = new DelegateCommand(AddOrder);//, () => true);//.ObservesCanExecute(() => true);
+            //DeleteOrderClick = new DelegateCommand(DeleteOrder);//, IsOrderSelected);//.ObservesCanExecute(IsOrderSelected);
         }
 
         public void OnPropertyChanged(string prop)

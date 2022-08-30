@@ -63,8 +63,7 @@ namespace Database_Manager.Model
                         object customerId = reader.GetValue(1);
                         object sum = reader.GetValue(2);
                         object date = reader.GetValue(3);
-
-                        orders.Add(new Order() { Id = (int)id, CustomerId = (int)customerId, Summ = (decimal)sum, Date = date.ToString() ?? "" });
+                        orders.Add(new Order() { Id = (int)id, CustomerId = (int)customerId, Summ = (decimal)sum, Date = DateTime.Parse(date.ToString() ?? "2000-12-12") });
                     }
                     return orders;
                 }
@@ -87,7 +86,7 @@ namespace Database_Manager.Model
             StringBuilder sb = new StringBuilder("INSERT INTO Users VALUES ");
             for (int i = 0; i < amount; i++)
             {
-                sb.Append($"({defaultNames[random.Next(0, defaultNames.Length - 1)]}, {random.Next(100000, 999999)})");
+                sb.Append($"('{defaultNames[random.Next(0, defaultNames.Length - 1)]}', {random.Next(100000, 999999)})");
                 if (i < amount - 1) sb.Append(", ");
             }
             sb.Append(";");
@@ -102,7 +101,24 @@ namespace Database_Manager.Model
 
         private static int FillDefaultValuesOrders()
         {
-            // finish this 
+            Random random = new Random();
+            int amount = 3;
+            string[] deafultDates = new string[] { "2022/12/12", "2021/01/13", "2020/05/03", "2000/21/23" };
+            StringBuilder sb = new StringBuilder("INSERT INTO Orders VALUES ");
+            var Users = GetUsers();
+            for (int i = 0; i < amount; i++)
+            {
+                sb.Append($"('{Users[random.Next(0, Users.Count - 1)].Id}', {random.Next(500, 450000)}, '{deafultDates[random.Next(0, deafultDates.Length)]}')");
+                if (i < amount - 1) sb.Append(", ");
+            }
+            sb.Append(";");
+
+            using (SqlConnection connection = new SqlConnection(connectionStr))
+            {
+                connection.Open();
+                SqlCommand command = new SqlCommand(sb.ToString(), connection);
+                return command.ExecuteNonQuery();
+            }
         }
 
         public static int AddUser(string name, int phone)

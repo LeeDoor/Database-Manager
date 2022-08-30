@@ -56,6 +56,8 @@ namespace Database_Manager.ViewModel
 
         public void AddPerson()
         {
+            DatabaseManager.AddUser("ignat", 2224444);
+            UpdateUsers();
         }
         public void EditPerson()
         {
@@ -111,7 +113,7 @@ namespace Database_Manager.ViewModel
             reader.Close();
         }
 
-        private void DeleteAllDataAsync()
+        private void DeleteAllData()
         {
             SqlCommand command = new SqlCommand($"DELETE FROM Orders", connection);
             command.ExecuteNonQuery();
@@ -156,10 +158,11 @@ namespace Database_Manager.ViewModel
             connection = new SqlConnection(connectionstr);
             connection.Open();
 
-            DeleteAllDataAsync();
+            DeleteAllData();
 
             FillDefaultValuesUsers();
-            UpdateUsers();
+            Users = DatabaseManager.GetUsers();
+            //UpdateUsers();
             FillDefaultValuesOrders();
             UpdateOrders();
 

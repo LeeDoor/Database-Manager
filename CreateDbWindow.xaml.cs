@@ -19,10 +19,20 @@ namespace Database_Manager
     /// </summary>
     public partial class CreateDbWindow : Window
     {
+        public string ConnectionString { get; set; }
+
         public CreateDbWindow()
         {
             InitializeComponent();
-            DataContext = new CreateDbWindowViewModel();
         }
+
+
+        public void OnClickGetData(object sender, object a)
+        {
+            ConnectionString = ConnectionLineText.Text;
+            DialogResult = true;
+            Close();
+        }
+
     }
 }

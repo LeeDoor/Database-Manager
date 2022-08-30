@@ -8,11 +8,11 @@
         Title="CreateDbWindow" Height="200" Width="400">
     <Grid>
         <StackPanel Width="200" Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center">
-            <TextBlock HorizontalAlignment="Center" Text="enter database name:"/>
-            <TextBox Text="{Binding DbName}"/>
+            <!--<TextBlock HorizontalAlignment="Center" Text="enter database name:"/>
+            <TextBox Name="DbNameText" Text="{Binding DbName}"/>-->
             <TextBlock HorizontalAlignment="Center" Text="enter connection line:"/>
-            <TextBox Text="{Binding ConnectionString}"/>
-            <Button Command="{Binding CreateConnect}" Content="create and connect"/>
+            <TextBox Name="ConnectionLineText" Text="{Binding ConnectionString}"/>
+            <Button Click="OnClickGetData" Content="create and connect"/>
         </StackPanel>
     </Grid>
 </Window>

@@ -47,13 +47,16 @@ namespace Database_Manager.ViewModel
         }
         #endregion
 
-        private SqlConnection connection;
         public DelegateCommand AddPersonClick { get; set; }
         public DelegateCommand EditPersonClick { get; set; }
         public DelegateCommand DeletePersonClick { get; set; }
         public DelegateCommand AddOrderClick { get; set; }
         public DelegateCommand DeleteOrderClick { get; set; }
 
+        public void AddPerson()
+        {
+
+        }
         public void EditPerson()
         {
 
@@ -62,7 +65,6 @@ namespace Database_Manager.ViewModel
         {
 
         }
-
         public void AddOrder()
         {
 
@@ -72,33 +74,14 @@ namespace Database_Manager.ViewModel
 
         }
 
-        public bool IsPersonSelected() => SelectedUser != null;
-        public bool IsOrderSelected() => SelectedOrder != null;
+        //public bool IsPersonSelected() => SelectedUser != null;
+        //public bool IsOrderSelected() => SelectedOrder != null;
 
-
-        private void DeleteAllData()
-        {
-            SqlCommand command = new SqlCommand($"DELETE FROM Orders", connection);
-            command.ExecuteNonQuery();
-
-            command = new SqlCommand($"DELETE FROM Users", connection);
-            command.ExecuteNonQuery();
-        }
 
         public MainWindowViewModel()
         {
-            //var dialog = new CreateDbWindow();
-            //dialog.ShowDialog();
-            //string connectionstr = dialog.ConnectionString;
-            //
 
-            string connectionstr = "Server=localhost\\SQLEXPRESS;Trusted_Connection=True;Encrypt=False;Database=ShopDB;";// MultipleActiveResultSets=True;";
-
-            connection = new SqlConnection(connectionstr);
-            connection.Open();
-
-            DeleteAllData();
-
+            DatabaseManager.ClearDb();
             DatabaseManager.FillDefaultValues();
             Users = DatabaseManager.GetUsers();
             Orders = DatabaseManager.GetOrders();

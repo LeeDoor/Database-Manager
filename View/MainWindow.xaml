@@ -4,8 +4,12 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Database_Manager"
+        xmlns:c="clr-namespace:Database_Manager.ViewModel"
         mc:Ignorable="d"
-        Title="MainWindow" Height="500" Width="800">
+        Title="MainWindow" Height="1000" Width="1500" Background="#250938">
+    <Window.DataContext>
+        <c:MainWindowViewModel/>
+    </Window.DataContext>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width = "*"/>
@@ -13,49 +17,59 @@
         </Grid.ColumnDefinitions>
 
         <Grid.RowDefinitions>
-            <RowDefinition/>
-            <RowDefinition Height="70"/>
+            <RowDefinition Height="20*"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
+        
+        <!--USERS COLUMN-->
+        <DataGrid CellStyle="{DynamicResource DataGridCellStyle1}" 
+                  RowHeaderStyle="{DynamicResource DataGridRowHeaderStyle1}" 
+                  RowStyle="{DynamicResource DataGridRowStyle1}" 
+                  ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" 
+                  SelectedItem="{Binding SelectedUser}" 
+                  ItemsSource="{Binding Users, UpdateSourceTrigger=PropertyChanged}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Width ="0.5*" Binding="{Binding Id}" Header="Id"/>
+                <DataGridTextColumn Width ="2*" Binding="{Binding Name}" Header="Name"/>
+                <DataGridTextColumn Width ="*" Binding="{Binding Phone}" Header="Phone"/>
+                <DataGridTemplateColumn Width="0.8*">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal" FlowDirection="LeftToRight">
+                                <Button Margin="3" Style="{DynamicResource ButtonStyleRows}">R</Button>
+                                <Button Margin="3" Style="{DynamicResource ButtonStyleRows}">E</Button>
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <!--ORDERS COLUMN-->
+        <DataGrid Grid.Column="1" 
+                  CellStyle="{DynamicResource DataGridCellStyle1}" 
+                  RowHeaderStyle="{DynamicResource DataGridRowHeaderStyle1}" 
+                  RowStyle="{DynamicResource DataGridRowStyle1}" 
+                  ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" 
+                  SelectedItem="{Binding SelectedUser}" 
+                  ItemsSource="{Binding Orders, UpdateSourceTrigger=PropertyChanged}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Width ="0.5*" Binding="{Binding Id}" Header="Id"/>
+                <DataGridTextColumn Width ="0.6*" Binding="{Binding CustomerId}" Header="User id"/>
+                <DataGridTextColumn Width ="*" Binding="{Binding Summ}" Header="summ"/>
+                <DataGridTextColumn Width ="1.5*" Binding="{Binding DateOnly}" Header="date"/>
+                <DataGridTemplateColumn Width="0.5*">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal" FlowDirection="LeftToRight">
+                                <Button Margin="3" Style="{DynamicResource ButtonStyleRows}">R</Button>
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
 
-        <ListView 
-            Grid.Column="0"
-            Grid.Row="0"
-            Margin="5,0,0,5" 
-            ItemsSource="{Binding Users}" SelectedItem="{Binding SelectedUser}">
-
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=Id}" Width="30">Id</GridViewColumn>
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=Name}" Width="130">Name</GridViewColumn>
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=Phone}" Width="140">Phone number</GridViewColumn>
-                </GridView>
-            </ListView.View>
-        </ListView>
-        <ListView 
-            Grid.Column="1" 
-            Grid.Row = "0"
-            Margin="5,0,0,5" 
-            ItemsSource="{Binding Orders}" SelectedItem="{Binding SelectedOrder}">
-
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=Id}" Width="30">id</GridViewColumn>
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=CustomerId}" Width="60">customer</GridViewColumn>
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=Summ}" Width="80">summ</GridViewColumn>
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=Date}" Width="140">date</GridViewColumn>
-                </GridView>
-            </ListView.View>
-        </ListView>
-
-        <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" FlowDirection="LeftToRight" Grid.Row="1" Grid.Column="0">
-            <Button Command="{Binding AddPersonClick}" Width="70" VerticalAlignment="Center" Content="add" Padding="10" Margin="5"/>
-            <Button Command="{Binding DeletePersonClick}" Width="70" VerticalAlignment="Center" Content="remove" Padding="10" Margin="5"/>
-            <Button Command="{Binding EditPersonClick}" Width="70" VerticalAlignment="Center" Content="edit" Padding="10" Margin="5"/>
-        </StackPanel>
-
-        <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" FlowDirection="LeftToRight" Grid.Row="1" Grid.Column="1">
-            <Button Command="{Binding AddOrderClick}" Width="70" VerticalAlignment="Center" Content="add" Padding="10" Margin="5"/>
-            <Button Command="{Binding DeleteOrderClick}" Width="70" VerticalAlignment="Center" Content="remove" Padding="10" Margin="5"/>
-        </StackPanel>
+        <Button Content="+" Grid.Row="1" Grid.Column="0" Style="{DynamicResource ButtonStyleAdd}"/>
+        <Button Content="+" Grid.Row="1" Grid.Column="1" Style="{DynamicResource ButtonStyleAdd}"/>
     </Grid>
 </Window> 

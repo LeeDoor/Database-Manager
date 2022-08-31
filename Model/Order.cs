@@ -51,6 +51,10 @@ namespace Database_Manager.Model
             }
         }
 
+        public string DateOnly { 
+            get => Date.Day + "/" + date.Month + "/" + date.Year; 
+        }
+
 
         public event PropertyChangedEventHandler? PropertyChanged;
         public void OnPropertyChanged(string prop)

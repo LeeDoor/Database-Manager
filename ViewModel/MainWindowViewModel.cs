@@ -22,7 +22,12 @@ namespace Database_Manager.ViewModel
 
         #region grids
         private User _selectedUser;
-        public ObservableCollection<User> Users { get; set; }
+        public ObservableCollection<User> Users { get; set; } = new ObservableCollection<User> 
+        {
+            new User() { Id = 0, Name = "Sergay", Phone = 20005 } ,
+            new User() { Id = 1, Name = "Oleg", Phone = 20605 } ,
+            new User() { Id = 2, Name = "gethethj", Phone = 7585 } 
+        };
         public User SelectedUser
         {
             get => _selectedUser;
@@ -35,7 +40,12 @@ namespace Database_Manager.ViewModel
 
 
         private Order _selectedOrder;
-        public ObservableCollection<Order> Orders { get; set; }
+        public ObservableCollection<Order> Orders { get; set; } = new ObservableCollection<Order>
+        {
+            new Order() { Id = 0, CustomerId = 0, Date = DateTime.Parse("2002/12/01"), Summ = 12000m } ,
+            new Order() { Id = 1, CustomerId = 1, Date = DateTime.Parse("2012/11/12"), Summ = 14050m } ,
+            new Order() { Id = 2, CustomerId = 1, Date = DateTime.Parse("2003/09/14"), Summ = 15099.99m }
+        };
         public Order SelectedOrder
         {
             get => _selectedOrder;
@@ -81,10 +91,10 @@ namespace Database_Manager.ViewModel
         public MainWindowViewModel()
         {
 
-            DatabaseManager.ClearDb();
-            DatabaseManager.FillDefaultValues();
-            Users = DatabaseManager.GetUsers();
-            Orders = DatabaseManager.GetOrders();
+            //DatabaseManager.ClearDb();
+            //DatabaseManager.FillDefaultValues();
+            //Users = DatabaseManager.GetUsers();
+            //Orders = DatabaseManager.GetOrders();
 
             //сдесь observes can execute не работает по непонятной причине, и кнопка не становится видимой когда появляется выбранный элемент
             //AddPersonClick = new DelegateCommand(AddPerson);//.ObservesCanExecute(() => true);

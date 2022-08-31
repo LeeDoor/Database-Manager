@@ -115,7 +115,7 @@ namespace Database_Manager.Model
         {
             Random random = new Random();
             int amount = 3;
-            string[] deafultDates = new string[] { "2022/12/12", "2021/01/13", "2020/05/03", "2000/21/23" };
+            string[] deafultDates = new string[] { "2022/12/12", "2021/01/13", "2020/05/03", "2000/10/23" };
             StringBuilder sb = new StringBuilder("INSERT INTO Orders VALUES ");
             var Users = GetUsers();
             for (int i = 0; i < amount; i++)

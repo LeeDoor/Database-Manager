@@ -36,8 +36,12 @@
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal" FlowDirection="LeftToRight">
-                                <Button Margin="3" Style="{DynamicResource ButtonStyleRows}">R</Button>
-                                <Button Margin="3" Style="{DynamicResource ButtonStyleRows}">E</Button>
+                                <Button Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}, Path=DataContext.DeleteUserClick}" 
+                                        Margin="3" 
+                                        Style="{DynamicResource ButtonStyleRows}">R</Button>
+                                <Button Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}, Path=DataContext.EditUserClick}" 
+                                        Margin="3" 
+                                        Style="{DynamicResource ButtonStyleRows}">E</Button>
                             </StackPanel>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
@@ -60,16 +64,16 @@
                 <DataGridTemplateColumn Width="0.5*">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <StackPanel Orientation="Horizontal" FlowDirection="LeftToRight">
-                                <Button Margin="3" Style="{DynamicResource ButtonStyleRows}">R</Button>
-                            </StackPanel>
+                            <Button Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}, Path=DataContext.DeleteOrderClick}" 
+                                        Margin="3" 
+                                        Style="{DynamicResource ButtonStyleRows}">R</Button>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
 
-        <Button Content="+" Grid.Row="1" Grid.Column="0" Style="{DynamicResource ButtonStyleAdd}"/>
-        <Button Content="+" Grid.Row="1" Grid.Column="1" Style="{DynamicResource ButtonStyleAdd}"/>
+        <Button Command="{Binding AddUserClick}" Content="+" Grid.Row="1" Grid.Column="0" Style="{DynamicResource ButtonStyleAdd}"/>
+        <Button Command="{Binding AddOrderClick}" Content="+" Grid.Row="1" Grid.Column="1" Style="{DynamicResource ButtonStyleAdd}"/>
     </Grid>
 </Window> 

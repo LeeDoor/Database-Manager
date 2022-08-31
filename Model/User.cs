@@ -43,6 +43,10 @@ namespace Database_Manager.Model
             }
         }
 
+        public override string ToString()
+        {
+            return $"{Id}: {Name}";
+        }
 
         public void OnPropertyChanged(string prop)
         {

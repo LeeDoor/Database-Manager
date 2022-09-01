@@ -74,10 +74,6 @@ namespace Database_Manager.ViewModel
             MessageBox.Show("DELETE ORDER BUTTON CLICKED");
         }
 
-        //public bool IsPersonSelected() => SelectedUser != null;
-        //public bool IsOrderSelected() => SelectedOrder != null;
-
-
         public MainWindowViewModel()
         {
 

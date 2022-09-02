@@ -54,8 +54,10 @@ namespace Database_Manager.ViewModel
         public DelegateCommand DeleteOrderClick { get; set; }
 
         public void AddUser()
-        { 
-            MessageBox.Show("ADD USER BUTTON CLICKED");
+        {
+            DialogUserWindow window = new DialogUserWindow(null);
+            window.ShowDialog();
+            UpdateValues();
         }
         public void EditUser()
         {
@@ -73,14 +75,18 @@ namespace Database_Manager.ViewModel
         {
             MessageBox.Show("DELETE ORDER BUTTON CLICKED");
         }
+        private void UpdateValues()
+        {
+            Users = DatabaseManager.GetUsers();
+            Orders = DatabaseManager.GetOrders();
+        }
 
         public MainWindowViewModel()
         {
 
             DatabaseManager.ClearDb();
             DatabaseManager.FillDefaultValues();
-            Users = DatabaseManager.GetUsers();
-            Orders = DatabaseManager.GetOrders();
+            UpdateValues();
 
             AddUserClick = new DelegateCommand(AddUser);
             EditUserClick = new DelegateCommand(EditUser);

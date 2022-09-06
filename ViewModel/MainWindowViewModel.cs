@@ -83,7 +83,6 @@ namespace Database_Manager.ViewModel
 
         public MainWindowViewModel()
         {
-
             DatabaseManager.ClearDb();
             DatabaseManager.FillDefaultValues();
             UpdateValues();

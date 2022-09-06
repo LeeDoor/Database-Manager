@@ -16,6 +16,7 @@ namespace Database_Manager.ViewModel
         private int? _id;
         private string _name = "";
         private int _phone;
+        private DialogUserWindow _win;
         
         public string Name
         {
@@ -36,20 +37,10 @@ namespace Database_Manager.ViewModel
             }
         }
 
-        public DelegateCommand CreateUserCommand { get; set; }
-        public DelegateCommand EditUserCommand { get; set; }
+        public DelegateCommand CreateOrEditUserCommand { get; set; }
         public DelegateCommand CloseWindowCommand { get; set; }
 
-        public void AddUser()
-        {
-            if (string.IsNullOrEmpty(Name) || Phone == 0)
-            {
-                MessageBox.Show("enter valid values");
-                return;
-            }
-            DatabaseManager.AddUser(Name, Phone);
-        }
-        public void EditUser()
+        public void AddOrEditUser()
         {
             if (string.IsNullOrEmpty(Name) || Phone == 0)
             {
@@ -57,16 +48,17 @@ namespace Database_Manager.ViewModel
                 return;
             }
             if (!_id.HasValue)
-                throw new InvalidOperationException("id is not selected");
-            DatabaseManager.EditUser(_id.Value, Name, Phone);
+                DatabaseManager.AddUser(Name, Phone);
+            else
+                DatabaseManager.EditUser(_id.Value, Name, Phone);
+            _win.Close();
         }
 
         public DialogUsersViewModel(DialogUserWindow win, int? id) 
         {
             _id = id;
-
-            CreateUserCommand = new DelegateCommand(AddUser);
-            EditUserCommand = new DelegateCommand(EditUser);
+            _win = win;
+            CreateOrEditUserCommand = new DelegateCommand(AddOrEditUser);
             CloseWindowCommand = new DelegateCommand(() => win.Close());
         }
 

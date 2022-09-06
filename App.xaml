@@ -9,50 +9,23 @@
         <BooleanToVisibilityConverter x:Key="bool2VisibilityConverter"/>
         <SolidColorBrush x:Key="TextBox.Static.Border" Color="Transparent"/>
         <SolidColorBrush x:Key="TextBox.MouseOver.Border" Color="Transparent"/>
-        <Style x:Key="TextBlockStyle1" TargetType="{x:Type TextBlock}">
+        <Style TargetType="{x:Type TextBox}">
             <Setter Property="TextWrapping" Value="NoWrap"/>
-            <Setter Property="TextTrimming" Value="None"/>
             <Setter Property="Background" Value="#A682FF"/>
             <Setter Property="HorizontalAlignment" Value="Stretch"/>
             <Setter Property="Foreground" Value="White"/>
             <Setter Property="Padding" Value="5, 0"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="FontSize" Value="30"/>
         </Style>
         <SolidColorBrush x:Key="TextBox.Focus.Border" Color="Transparent"/>
-        <Style TargetType="{x:Type TextBox}">
+        <Style x:Key="TextBlockStyle1" TargetType="{x:Type TextBlock}">
+            <Setter Property="FontSize" Value="30"/>
+            <Setter Property="TextAlignment" Value="Center"/>
             <Setter Property="Background" Value="Transparent"/>
             <Setter Property="Foreground" Value="White"/>
             <Setter Property="FontWeight" Value="Bold"/>
-            <Setter Property="HorizontalContentAlignment" Value="Center"/>
             <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="{x:Type TextBox}">
-                        <Border CornerRadius="10, 10, 0, 0" x:Name="border" Background="#715AFF" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="0" SnapsToDevicePixels="True">
-                            <ScrollViewer x:Name="PART_ContentHost" Focusable="false" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"/>
-                        </Border>
-                        <ControlTemplate.Triggers>
-                            <Trigger Property="IsEnabled" Value="false">
-                                <Setter Property="Opacity" TargetName="border" Value="0.56"/>
-                            </Trigger>
-                            <Trigger Property="IsMouseOver" Value="true">
-                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource TextBox.MouseOver.Border}"/>
-                            </Trigger>
-                            <Trigger Property="IsKeyboardFocused" Value="true">
-                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource TextBox.Focus.Border}"/>
-                            </Trigger>
-                        </ControlTemplate.Triggers>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-            <Style.Triggers>
-                <MultiTrigger>
-                    <MultiTrigger.Conditions>
-                        <Condition Property="IsInactiveSelectionHighlightEnabled" Value="true"/>
-                        <Condition Property="IsSelectionActive" Value="false"/>
-                    </MultiTrigger.Conditions>
-                    <Setter Property="SelectionBrush" Value="{DynamicResource {x:Static SystemColors.InactiveSelectionHighlightBrushKey}}"/>
-                </MultiTrigger>
-            </Style.Triggers>
         </Style>
         <Style x:Key="RowHeaderGripperStyle" TargetType="{x:Type Thumb}">
             <Setter Property="Height" Value="8"/>

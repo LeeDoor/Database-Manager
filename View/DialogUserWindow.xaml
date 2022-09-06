@@ -6,21 +6,39 @@
 		xmlns:local="clr-namespace:Database_Manager"
 		xmlns:vm="clr-namespace:Database_Manager.ViewModel"
 		mc:Ignorable="d"
-		Title="CreateUserWindow" Height="200" Width="300" Background="#250938">
+		Title="CreateUserWindow" Height="400" Width="600" Background="#451466">
 
     <Grid>
-		<StackPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center" Width="150">
-			<TextBox>name</TextBox>
-			<TextBlock Text="{Binding Name}" Style="{DynamicResource TextBlockStyle1}" Margin="0, 0, 0, 10"/>
-			<TextBox>phone</TextBox>
-			<TextBlock Text="{Binding Phone}" Style="{DynamicResource TextBlockStyle1}"/>
+		<StackPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center" Width="500">
+            <Grid>
+                <Border BorderThickness="1" 
+                        Grid.Row="0" 
+                        Grid.ColumnSpan="2" 
+                        CornerRadius="30,30,0,0" 
+                        BorderBrush="Transparent" 
+                        Background="#632fd4">
+                </Border>
+                <TextBlock Style="{DynamicResource TextBlockStyle1}" Text="name"/>
+            </Grid>
+            <TextBox Text="{Binding Name}" Margin="0, 0, 0, 10"/>
+            <Grid>
+                <Border BorderThickness="1" 
+                        Grid.Row="0" 
+                        Grid.ColumnSpan="2" 
+                        CornerRadius="30,30,0,0" 
+                        BorderBrush="Transparent" 
+                        Background="#632fd4">
+                </Border>
+                <TextBlock Style="{DynamicResource TextBlockStyle1}" Text="phone"/>
+            </Grid>
+            <TextBox Text="{Binding Phone}"/>
 			<Grid VerticalAlignment="Center">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <Button FontSize="10" Grid.Column="0" Margin="0, 3, 3, 0" Height="20" Style="{DynamicResource ButtonStyleAdd}" Content="Cancel"></Button>
-                <Button FontSize="10" Grid.Column="1" Margin="3, 3, 0, 0" Height="20" Style="{DynamicResource ButtonStyleAdd}" Content="Apply"></Button>
+                <Button Command="{Binding CloseWindowCommand}" FontSize="20" Grid.Column="0" Margin="0, 6, 3, 0" Height="40" Style="{DynamicResource ButtonStyleAdd}" Content="Cancel"></Button>
+                <Button Command="{Binding CreateOrEditUserCommand}" FontSize="20" Grid.Column="1" Margin="3, 6, 0, 0" Height="40" Style="{DynamicResource ButtonStyleAdd}" Content="Apply"></Button>
 			</Grid>
 		</StackPanel>
 	</Grid>

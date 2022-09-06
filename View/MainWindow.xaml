@@ -21,7 +21,7 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         
-        <!--USERS COLUMN-->
+        <!--USERS grid-->
         <DataGrid CellStyle="{DynamicResource DataGridCellStyle1}" 
                   RowHeaderStyle="{DynamicResource DataGridRowHeaderStyle1}" 
                   RowStyle="{DynamicResource DataGridRowStyle1}" 
@@ -48,7 +48,7 @@
                 </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
-        <!--ORDERS COLUMN-->
+        <!--ORDERS grid-->
         <DataGrid Grid.Column="1" 
                   CellStyle="{DynamicResource DataGridCellStyle1}" 
                   RowHeaderStyle="{DynamicResource DataGridRowHeaderStyle1}" 

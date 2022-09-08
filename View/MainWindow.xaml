@@ -76,6 +76,13 @@
         </DataGrid>
 
         <Button Command="{Binding AddUserClick}" Content="+" Grid.Row="1" Grid.Column="0" Style="{DynamicResource ButtonStyleAdd}"/>
-        <Button Command="{Binding AddOrderClick}" Content="+" Grid.Row="1" Grid.Column="1" Style="{DynamicResource ButtonStyleAdd}"/>
+        <Grid Grid.Row="1" Grid.Column="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="{Binding TotalSumOrders}" FontSize="30" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <Button Grid.Column ="1" Command="{Binding AddOrderClick}" Content="+" Style="{DynamicResource ButtonStyleAdd}"/>
+        </Grid>
     </Grid>
 </Window> 

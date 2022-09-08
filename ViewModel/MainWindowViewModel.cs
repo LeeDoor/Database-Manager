@@ -19,6 +19,16 @@ namespace Database_Manager.ViewModel
     public class MainWindowViewModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler? PropertyChanged;
+        private string totalSumOrders;
+        public string TotalSumOrders 
+        { 
+            get => totalSumOrders; 
+            set
+            {
+                totalSumOrders = value;
+                OnPropertyChanged(nameof(TotalSumOrders));
+            }
+        }
 
         #region grids
         private User _selectedUser;
@@ -107,6 +117,18 @@ namespace Database_Manager.ViewModel
         {
             Users = DatabaseManager.GetUsers();
             Orders = DatabaseManager.GetOrders();
+            UpdateTotalSum();
+        }
+
+        private void UpdateTotalSum()
+        {
+            decimal res = 0;
+            foreach(var order in Orders)
+            {
+                res += order.Summ;
+            }
+
+            TotalSumOrders = "Total summ: " + res;
         }
 
         public MainWindowViewModel()

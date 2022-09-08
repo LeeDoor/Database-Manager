@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Database_Manager"
         xmlns:c="clr-namespace:Database_Manager.ViewModel"
         mc:Ignorable="d"
-        Title="MainWindow" Height="1000" Width="1500" Background="#250938">
+        Title="MainWindow" Height="1000" Width="1500" Background="#451466">
     <Window.DataContext>
         <c:MainWindowViewModel/>
     </Window.DataContext>
@@ -27,7 +27,7 @@
                   RowStyle="{DynamicResource DataGridRowStyle1}" 
                   ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" 
                   SelectedItem="{Binding SelectedUser}" 
-                  ItemsSource="{Binding Users, UpdateSourceTrigger=PropertyChanged}">
+                  ItemsSource="{Binding Users, Mode=TwoWay}">
             <DataGrid.Columns>
                 <DataGridTextColumn Width ="0.5*" Binding="{Binding Id}" Header="Id"/>
                 <DataGridTextColumn Width ="2*" Binding="{Binding Name}" Header="Name"/>

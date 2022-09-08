@@ -22,7 +22,15 @@ namespace Database_Manager.ViewModel
 
         #region grids
         private User _selectedUser;
-        public ObservableCollection<User> Users { get; set; }
+        private ObservableCollection<User> _users;
+        public ObservableCollection<User> Users {
+            get => _users;
+            set
+            {
+                _users = value;
+                OnPropertyChanged(nameof(Users));
+            }
+        }
         public User SelectedUser
         {
             get => _selectedUser;
@@ -35,7 +43,16 @@ namespace Database_Manager.ViewModel
 
 
         private Order _selectedOrder;
-        public ObservableCollection<Order> Orders { get; set; }
+        private ObservableCollection<Order> _orders;
+        public ObservableCollection<Order> Orders {
+            get => _orders;
+            set
+            {
+                _orders = value;
+                OnPropertyChanged(nameof(Orders));
+            }
+        }
+
         public Order SelectedOrder
         {
             get => _selectedOrder;

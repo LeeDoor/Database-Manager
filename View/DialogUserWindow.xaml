@@ -6,7 +6,7 @@
 		xmlns:local="clr-namespace:Database_Manager"
 		xmlns:vm="clr-namespace:Database_Manager.ViewModel"
 		mc:Ignorable="d"
-		Title="CreateUserWindow" Height="400" Width="600" Background="#451466">
+		Title="CreateUserWindow" Height="400" Width="600" Background="White">
 
     <Grid>
 		<StackPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center" Width="500">
@@ -16,7 +16,7 @@
                         Grid.ColumnSpan="2" 
                         CornerRadius="30,30,0,0" 
                         BorderBrush="Transparent" 
-                        Background="#632fd4">
+                        Background="#5979d9">
                 </Border>
                 <TextBlock Style="{DynamicResource TextBlockStyle1}" Text="name"/>
             </Grid>
@@ -27,7 +27,7 @@
                         Grid.ColumnSpan="2" 
                         CornerRadius="30,30,0,0" 
                         BorderBrush="Transparent" 
-                        Background="#632fd4">
+                        Background="#5979d9">
                 </Border>
                 <TextBlock Style="{DynamicResource TextBlockStyle1}" Text="phone"/>
             </Grid>

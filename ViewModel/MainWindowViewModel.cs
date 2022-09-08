@@ -78,11 +78,14 @@ namespace Database_Manager.ViewModel
         }
         public void EditUser()
         {
-            MessageBox.Show("EDIT USER BUTTON CLICKED " + SelectedUser.ToString());
+            DialogUserWindow window = new DialogUserWindow(SelectedUser.Id);
+            window.ShowDialog();
+            UpdateValues();
         }
         public void DeleteUser()
         {
-            MessageBox.Show("DELETE USER BUTTON CLICKED");
+            DatabaseManager.RemoveUser(SelectedUser.Id);
+            UpdateValues();
         }
         public void AddOrder()
         {

@@ -11,7 +11,7 @@
         <SolidColorBrush x:Key="TextBox.MouseOver.Border" Color="Transparent"/>
         <Style TargetType="{x:Type TextBox}">
             <Setter Property="TextWrapping" Value="NoWrap"/>
-            <Setter Property="Background" Value="#A682FF"/>
+            <Setter Property="Background" Value="#d1d1d1"/>
             <Setter Property="HorizontalAlignment" Value="Stretch"/>
             <Setter Property="Foreground" Value="White"/>
             <Setter Property="Padding" Value="5, 0"/>

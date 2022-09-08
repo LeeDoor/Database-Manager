@@ -96,7 +96,6 @@ namespace Database_Manager.Model
             return command.ExecuteNonQuery();
 
         }
-
         private static int FillDefaultValuesOrders()
         {
             Random random = new Random();
@@ -149,12 +148,18 @@ namespace Database_Manager.Model
         {
             int res = 0;
             SqlCommand command;
-            Order? orderToRemove = GetOrders().Where(n => n.CustomerId == idToRemove).FirstOrDefault();
-            if(orderToRemove != null)
+            List<Order> ordersToRemove = GetOrders().Where(n => n.CustomerId == idToRemove).ToList();
+            if(ordersToRemove.Count > 0)
             {
-                command = new SqlCommand("DELETE FROM Orders WHERE Id = @idToChange", connection);
-                SqlParameter paramOrderId = new SqlParameter("@idToChange", orderToRemove.Id);
-                command.Parameters.Add(paramOrderId);
+                StringBuilder sb = new("DELETE FROM Orders WHERE Id IN(");
+                for(int i  =0; i < ordersToRemove.Count; i++)
+                {
+                    sb.Append(ordersToRemove[i].Id);
+                    if(i != ordersToRemove.Count - 1)
+                        sb.Append(", ");
+                }
+                sb.Append(")");
+                command = new SqlCommand(sb.ToString(), connection);
                 res += command.ExecuteNonQuery();
             }
 
@@ -166,25 +171,9 @@ namespace Database_Manager.Model
             return command.ExecuteNonQuery();
         }
 
-        public static int AddOrder(int UserId, decimal sum, DateTime date)
+        public static int AddOrder(int userId, decimal sum, DateTime date)
         {
             SqlCommand command = new SqlCommand("INSERT INTO Orders VALUES (@userId, @sum, @date);", connection);
-
-            SqlParameter paramUserId = new SqlParameter("@userId", UserId);
-            command.Parameters.Add(paramUserId);
-
-            SqlParameter paramSum = new SqlParameter("@sum", sum);
-            command.Parameters.Add(paramSum);
-
-            SqlParameter paramDate = new SqlParameter("@date", date);
-            command.Parameters.Add(paramDate);
-
-            return command.ExecuteNonQuery();
-        }
-
-        public static int EditOrder(int idToChange, int userId, decimal sum, DateTime date)
-        {
-            SqlCommand command = new SqlCommand("UPDATE Orders SET UserId = @userId, Summ = @sum, Date = @date WHERE Id = @idToChange", connection);
 
             SqlParameter paramUserId = new SqlParameter("@userId", userId);
             command.Parameters.Add(paramUserId);
@@ -197,12 +186,11 @@ namespace Database_Manager.Model
 
             return command.ExecuteNonQuery();
         }
-
         public static int RemoveOrder(int idToDelete)
         {
             SqlCommand command = new SqlCommand("DELETE FROM Orders WHERE Id = @idToDelete", connection);
 
-            SqlParameter paramId = new SqlParameter("@idToChange", idToDelete);
+            SqlParameter paramId = new SqlParameter("@idToDelete", idToDelete);
             command.Parameters.Add(paramId);
 
             return command.ExecuteNonQuery();

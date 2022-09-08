@@ -89,11 +89,19 @@ namespace Database_Manager.ViewModel
         }
         public void AddOrder()
         {
-            MessageBox.Show("ADD ORDER BUTTON CLICKED");
+            if(Users.Count == 0)
+            {
+                MessageBox.Show("no users to create order");
+                return;
+            }
+            DialogOrderWindow win = new DialogOrderWindow();
+            win.ShowDialog();
+            UpdateValues();
         }
         public void DeleteOrder()
         {
-            MessageBox.Show("DELETE ORDER BUTTON CLICKED");
+            DatabaseManager.RemoveOrder(SelectedOrder.Id);
+            UpdateValues();
         }
         private void UpdateValues()
         {

@@ -7,6 +7,8 @@ using System.DirectoryServices;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Database_Manager.View;
+using System.Windows;
 
 namespace Database_Manager.Model
 {
@@ -16,13 +18,23 @@ namespace Database_Manager.Model
 
         static DatabaseManager()
         {
-            //var dialog = new CreateDbWindow();
-            //dialog.ShowDialog();
-            //string connectionStr = dialog.ConnectionString;
+            connection = new SqlConnection();
+            while (connection.State != System.Data.ConnectionState.Open)
+            {
+                var dialog = new CreateDbWindow();
+                dialog.ShowDialog();
+                string connectionStr = dialog.ConnectionString;
 
-            string connectionStr = "Server=localhost\\SQLEXPRESS;Trusted_Connection=True;Encrypt=False;Database=ShopDB;";
-            connection = new SqlConnection(connectionStr);
-            connection.Open();
+                connection.ConnectionString = connectionStr;
+                try
+                {
+                    connection.Open();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
         }
 
         public static void ClearDb()

@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Database_Manager"
         xmlns:c="clr-namespace:Database_Manager.ViewModel"
         mc:Ignorable="d"
-        Title="MainWindow" Height="1000" Width="1500" Background="#451466">
+        Title="MainWindow" Height="1000" Width="1500" Background="white">
     <Window.DataContext>
         <c:MainWindowViewModel/>
     </Window.DataContext>
@@ -17,12 +17,13 @@
         </Grid.ColumnDefinitions>
 
         <Grid.RowDefinitions>
-            <RowDefinition Height="20*"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
         
         <!--USERS grid-->
-        <DataGrid CellStyle="{DynamicResource DataGridCellStyle1}" 
+        <DataGrid HorizontalScrollBarVisibility="Disabled"
+                  CellStyle="{DynamicResource DataGridCellStyle1}" 
                   RowHeaderStyle="{DynamicResource DataGridRowHeaderStyle1}" 
                   RowStyle="{DynamicResource DataGridRowStyle1}" 
                   ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" 
@@ -49,7 +50,8 @@
             </DataGrid.Columns>
         </DataGrid>
         <!--ORDERS grid-->
-        <DataGrid Grid.Column="1" 
+        <DataGrid HorizontalScrollBarVisibility="Disabled"
+                  Grid.Column="1" 
                   CellStyle="{DynamicResource DataGridCellStyle1}" 
                   RowHeaderStyle="{DynamicResource DataGridRowHeaderStyle1}" 
                   RowStyle="{DynamicResource DataGridRowStyle1}" 
